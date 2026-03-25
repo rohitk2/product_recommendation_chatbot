@@ -16,14 +16,27 @@ An AI-powered chatbot that collects user preferences through conversation and re
 ```mermaid
 graph TD
     A((START)) --> B[orchestrator_agent]
-    B -->|send conversation| C[Claude API]
-    C -->|assistant response| B
-    B --> D{should_query_products}
-    D -->|preferences incomplete| E((END))
-    D -->|preferences complete| F[product_query_execute]
-    F -->|filter & sort by prefs| G[(products.csv)]
+    B -->|ask user| C[/User Input/]
+    C -->|response| B
+    B --> D{All preferences collected?}
+
+    D -->|No - ask next preference| B
+
+    D -->|Yes| F[product_query_execute]
+    F -->|filter & sort| G[(products.csv)]
     G -->|top 3 results| F
-    F --> E
+    F --> H((END))
+
+    subgraph Preferences Collected
+        P1[1. product_category]
+        P2[2. budget → price]
+        P3[3. battery_life → battery_life]
+        P4[4. storage → max_storage]
+        P5[5. ram → ram]
+        P1 --> P2 --> P3 --> P4 --> P5
+    end
+
+    D -.-|once all 5 collected| Preferences Collected
 ```
 
 ## Chatbot Flow
