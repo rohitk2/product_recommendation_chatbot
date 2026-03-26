@@ -11,7 +11,7 @@ An AI-powered chatbot that collects user preferences through conversation and re
 | `index.html` | Single-page chat UI that renders the conversation and displays recommended products as styled cards with Amazon search links. |
 | `products.csv` | Dataset of 30+ Apple products (laptops, phones, tablets, wearables, etc.) with specs like price, battery life, RAM, and storage. |
 
-## System Diagram
+## Conversational Flow Chart
 
 ```mermaid
 graph TD
