@@ -36,7 +36,7 @@ graph TD
     end
 ```
 
-## Chatbot Flow
+## Brief Explanation
 
 1. **Session start** -- The user opens the page, triggering a `GET /start` call that creates a new session and invokes the LangGraph graph with an initial greeting.
 2. **Preference collection** -- The `orchestrator_agent` node sends the conversation to Claude with a system prompt instructing it to ask about preferences one at a time: product category, budget, battery life, storage, and RAM.
@@ -46,7 +46,7 @@ graph TD
 6. **Product recommendation** -- `product_query_execute` filters `products.csv` by category, sorts by the user's stated preferences (high/low), and returns the top 3 matches.
 7. **Results display** -- The server returns the product list to the frontend, which renders each product as a card with specs and an Amazon search link.
 
-## Run Locally
+## Local Setup
 
 1. **Clone the repo:**
    ```bash
