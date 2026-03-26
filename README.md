@@ -110,14 +110,13 @@ graph TD
     DB -->|top 3 results| DP[Display Products]
     DP --> UI
 
-    subgraph PydanticModel ["class UserPreferences(BaseModel)"]
-        direction LR
-        F1["product_category: str"]
-        F2["budget: Literal 'high', 'low', 'No Preference'"]
-        F3["battery_life: Literal 'high', 'low', 'No Preference'"]
-        F4["storage: Literal 'high', 'low', 'No Preference'"]
-        F5["ram: Literal 'high', 'low', 'No Preference'"]
-    end
+```
 
-    PV --- PydanticModel
+```python
+class UserPreferences(BaseModel):
+    product_category: str
+    budget: Literal["high", "low", "No Preference"]
+    battery_life: Literal["high", "low", "No Preference"]
+    storage: Literal["high", "low", "No Preference"]
+    ram: Literal["high", "low", "No Preference"]
 ```
