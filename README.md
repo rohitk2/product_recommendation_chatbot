@@ -48,6 +48,29 @@ graph TD
     end
 ```
 
+## Chatbot in Action
+
+**Staying on track with product selection** -- If the user tries to ask for something outside the supported product categories, the chatbot redirects them back to the available options.
+
+![Boat edge case](edge_case_screenshot/boat_edge_case.png)
+
+**Keeping preferences on topic** -- While collecting a specific preference, the chatbot won't advance if the user goes off-topic. It also allows selecting "No Preference" for any category.
+
+![Frog edge case](edge_case_screenshot/frog_edge_case.png)
+
+**Semantic understanding** -- You don't need to type exact category names. The chatbot uses semantic understanding to figure out what you mean from natural language.
+
+![Fuzzy search edge case](edge_case_screenshot/fuzzy_search_edge_case.png)
+
+**Built-in guidance** -- If you're unsure what to pick, the chatbot gives advice and answers general questions to help you decide.
+
+![Helper edge case](edge_case_screenshot/helper_edge_case.png)
+
+**Changing your mind** -- If you change your preferences midway through the conversation, the chatbot lets you retroactively update them before finalizing recommendations.
+
+![Update preference edge case 1](edge_case_screenshot/update_preference_edge_case1.png)
+![Update preference edge case 2](edge_case_screenshot/update_preference_edge_case2.png)
+
 ## Local Setup
 
 1. **Clone the repo:**
