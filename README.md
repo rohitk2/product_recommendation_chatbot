@@ -99,21 +99,25 @@ graph TD
 ## System Diagram
 
 ```mermaid
-graph LR
+graph TD
     UI[Chat UI] -->|user message| OA[orchestrator_agent]
     OA -->|ask preference| UI
 
-    OA -->|extracted JSON| PV[UserPreferences\nPydantic Validation]
+    OA -->|extracted JSON| PV[Pydantic Validation]
+
     PV -->|validated preferences| SQ[Sanitize Query]
     SQ -->|filtered query| DB[(Products DB)]
     DB -->|top 3 results| DP[Display Products]
     DP --> UI
 
-    subgraph "UserPreferences — BaseModel"
+    subgraph PydanticModel ["class UserPreferences(BaseModel)"]
+        direction LR
         F1["product_category: str"]
-        F2["budget: Literal#91;'high', 'low', 'No Preference'#93;"]
-        F3["battery_life: Literal#91;'high', 'low', 'No Preference'#93;"]
-        F4["storage: Literal#91;'high', 'low', 'No Preference'#93;"]
-        F5["ram: Literal#91;'high', 'low', 'No Preference'#93;"]
+        F2["budget: Literal 'high', 'low', 'No Preference'"]
+        F3["battery_life: Literal 'high', 'low', 'No Preference'"]
+        F4["storage: Literal 'high', 'low', 'No Preference'"]
+        F5["ram: Literal 'high', 'low', 'No Preference'"]
     end
+
+    PV --- PydanticModel
 ```
