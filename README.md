@@ -95,3 +95,25 @@ graph TD
    ```
 
 5. **Open** [http://localhost:8000](http://localhost:8000) in your browser.
+
+## System Diagram
+
+```mermaid
+graph LR
+    UI[Chat UI] -->|user message| OA[orchestrator_agent]
+    OA -->|ask preference| UI
+
+    OA -->|extracted JSON| PV[UserPreferences\nPydantic Validation]
+    PV -->|validated preferences| SQ[Sanitize Query]
+    SQ -->|filtered query| DB[(Products DB)]
+    DB -->|top 3 results| DP[Display Products]
+    DP --> UI
+
+    subgraph "UserPreferences — BaseModel"
+        F1["product_category: str"]
+        F2["budget: Literal#91;'high', 'low', 'No Preference'#93;"]
+        F3["battery_life: Literal#91;'high', 'low', 'No Preference'#93;"]
+        F4["storage: Literal#91;'high', 'low', 'No Preference'#93;"]
+        F5["ram: Literal#91;'high', 'low', 'No Preference'#93;"]
+    end
+```
