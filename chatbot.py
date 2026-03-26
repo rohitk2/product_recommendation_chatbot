@@ -25,6 +25,18 @@ class ProductDatabase:
 product_database = ProductDatabase("products.csv")
 VALID_CATEGORIES = product_database.get_unique_product_categories()
 
+DISPLAY_COLS = ["product_name", "price", "battery_life", "ram", "max_storage", "description"]
+
+PREF_TO_COL = {
+    "budget": "price",
+    "battery_life": "battery_life",
+    "storage": "max_storage",
+    "ram": "ram",
+}
+
+load_dotenv()
+client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+
 
 class UserPreferences(BaseModel):
     product_category: str
@@ -46,10 +58,6 @@ class GraphState(TypedDict):
     assistant_message: str | None
     user_preferences: UserPreferences | None
     recommended_products: pd.DataFrame | None
-
-
-load_dotenv()
-client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 SYSTEM_PROMPT = f"""You are a friendly product recommendation chatbot. Your job is to collect user preferences one at a time through natural conversation.
 
@@ -114,16 +122,6 @@ def should_query_products(state: GraphState) -> str:
     if state["user_preferences"] is not None:
         return "product_query_execute"
     return END
-
-
-DISPLAY_COLS = ["product_name", "price", "battery_life", "ram", "max_storage", "description"]
-
-PREF_TO_COL = {
-    "budget": "price",
-    "battery_life": "battery_life",
-    "storage": "max_storage",
-    "ram": "ram",
-}
 
 
 def get_recommendations(prefs):
