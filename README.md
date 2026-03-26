@@ -103,20 +103,9 @@ graph TD
     UI[Chat UI] -->|user message| OA[orchestrator_agent]
     OA -->|ask preference| UI
 
-    OA -->|extracted JSON| PV[Pydantic Validation]
-
-    PV -->|validated preferences| SQ[Sanitize Query]
+    OA -->|extracted JSON| SQ[Sanitize Query]
     SQ -->|filtered query| DB[(Products DB)]
     DB -->|top 3 results| DP[Display Products]
     DP --> UI
 
-```
-
-```python
-class UserPreferences(BaseModel):
-    product_category: str
-    budget: Literal["high", "low", "No Preference"]
-    battery_life: Literal["high", "low", "No Preference"]
-    storage: Literal["high", "low", "No Preference"]
-    ram: Literal["high", "low", "No Preference"]
 ```
